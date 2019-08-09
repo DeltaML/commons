@@ -40,7 +40,12 @@ class DeltaModel(object):
 
     @staticmethod
     def _get_from_requirements(requirements):
+        """
+        Add one dimaension to emulate intercept
+        :param requirements:
+        :return:
+        """
         try:
-            return np.zeros(len(requirements["features"]["list"]))
+            return np.zeros(len(requirements["features"]["list"]) + 1)
         except KeyError:
             pass
