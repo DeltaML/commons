@@ -64,7 +64,8 @@ class EncryptionService:
         return self.homomorphic_encryption.decrypt_collection(pk, collection)
 
     def decrypt_and_deserizalize_collection(self, private_key, collection):
-        return [self.homomorphic_encryption.decrypt_value(private_key, n) for n in self.get_deserialized_collection(collection)]
+        return [self.homomorphic_encryption.decrypt_value(private_key, n) for n in
+                self.get_deserialized_collection(collection)]
 
     def get_serialized_encrypted_collection(self, collection):
         """
