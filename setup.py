@@ -19,6 +19,7 @@ setup(
         'pandas',
         'sklearn',
         'phe',
+        'Pyfhel'
     ],
     classifiers=[
         'Development Status :: 3 - Alpha',
