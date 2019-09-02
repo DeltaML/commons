@@ -1,12 +1,33 @@
 import logging
-
+import uuid
 import numpy as np
 from sklearn.datasets import load_diabetes
 import pandas as pd
 import os
 
+from commons.utils.singleton import Singleton
 
-class DataLoader:
+
+class Metadata:
+    id = None
+    filename = None
+    features = None
+    features_min = None
+    features_max = None
+    target_min = None
+    target_max = None
+
+    def __init__(self, filename, features, feature_values, target_values):
+        self.id = str(uuid.uuid1())
+        self.filename = filename,
+        self.features = features,
+        self.features_min = feature_values.min(),
+        self.features_max = feature_values.max(),
+        self.target_min = target_values.min(),
+        self.target_max = target_values.max(),
+
+
+class DataLoader(metaclass=Singleton):
 
     def __init__(self, dataset_path):
         self.X, self.y, self.X_test, self.y_test = None, None, None, None
@@ -135,3 +156,18 @@ class DataLoader:
                 print(e)
                 continue
             return file
+
+    def get_dataset_metadata(self, filename):
+        try:
+            dataset = pd.read_csv("{}/{}".format(self.dataset_path, filename), sep="\t")
+            columns = dataset.columns.tolist()
+            feature_values = dataset[columns[:-1]]
+            target_values = dataset[columns[-1]]
+            lowercase_cols = list(map(lambda x: x.lower(), columns[:-1]))
+            return Metadata(filename=filename,
+                            features=lowercase_cols,
+                            feature_values=feature_values,
+                            target_values=target_values)
+        except Exception as e:
+            logging.error(e)
+            return None
