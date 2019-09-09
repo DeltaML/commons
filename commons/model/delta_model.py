@@ -30,12 +30,12 @@ class DeltaModel(object):
         :param requirements:
         :return:
         """
-        if X:
+        if X is not None:
             return np.zeros(X.shape[1])
         elif requirements:
             return self._get_from_requirements(requirements)
         else:
-            logging.error("Data for model {} {}".format(X, requirements))
+            logging.error("Invalid Data for model {} {}".format(X, requirements))
             raise ModelErrorException()
 
     @staticmethod

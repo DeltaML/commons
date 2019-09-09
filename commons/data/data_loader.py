@@ -19,12 +19,12 @@ class Metadata:
 
     def __init__(self, filename, features, feature_values, target_values):
         self.id = str(uuid.uuid1())
-        self.filename = filename,
-        self.features = features,
-        self.features_min = feature_values.min(),
-        self.features_max = feature_values.max(),
-        self.target_min = target_values.min(),
-        self.target_max = target_values.max(),
+        self.filename = filename
+        self.features = features
+        self.features_min = feature_values.min().min()
+        self.features_max = feature_values.max().min()
+        self.target_min = target_values.min()
+        self.target_max = target_values.max()
 
 
 class DataLoader(metaclass=Singleton):
@@ -123,7 +123,9 @@ class DataLoader(metaclass=Singleton):
         X_train, y_train = X[train_idx, :], y[train_idx]
         return X_train, y_train, X_test, y_test
 
-    def get_dataset_for_training(self, requeriments):
+
+
+    def get_dataset_for_training_deprecated(self, requeriments):
         """
         Iterates over the files in the datasets directory and verifies wich of those comply with the requested
         requirements for the current model training. The last of the datasets that complies with the requirements
@@ -153,7 +155,7 @@ class DataLoader(metaclass=Singleton):
                 if target_values.min() < target_range[0]:
                     continue
             except Exception as e:
-                print(e)
+                logging.error(e)
                 continue
             return file
 
