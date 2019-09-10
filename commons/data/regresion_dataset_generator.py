@@ -54,5 +54,5 @@ class DatasetGenerator(object):
         :return: The coefficients array
         """
         df, coef = cls.generate_df(n_samples, features, target, noise, random_state)
-        df.to_csv(filename, index=False)
+        df.to_csv(filename, index=False, sep="\t")
         return coef
