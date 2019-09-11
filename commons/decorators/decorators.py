@@ -1,9 +1,26 @@
+from commons.operations_utils.functions import deserialize, serialize
+
 def optimized_collection_parameter(optimization, active=False):
     def wrap(f):
         def wrapped_optimized_collection_parameter(*args):
             params = args[0], optimization(args[1]) if active else args[1]
             return f(*params)
         return wrapped_optimized_collection_parameter
+    return wrap
+
+
+def data_owner_computation():
+    def wrap(f):
+        def wrapped_data_owner_computation(*args):
+            encryption_service = args[0].encryption_service
+            collection = args[2]
+            public_key = args[3]
+            collection = deserialize(collection, encryption_service, public_key)
+            params = list(args)
+            params[2] = collection
+            result = f(*params)
+            return serialize(result, encryption_service, public_key)
+        return wrapped_data_owner_computation
     return wrap
 
 
