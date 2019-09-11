@@ -18,7 +18,7 @@ setup(
         'numpy',
         'pandas',
         'sklearn',
-        'phe',
+        'phe'
     ],
     classifiers=[
         'Development Status :: 3 - Alpha',

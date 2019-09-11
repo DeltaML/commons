@@ -2,3 +2,6 @@
 MANIFEST
 dist/
 venv/
+*.pyc
+*/*.pyc
+.ipynb_checkpoints/
