@@ -1,6 +1,6 @@
 from commons.model.delta_model import DeltaModel
 from commons.model.prediction import Prediction
-from commons.operations_utils.functions import mean_square_error
+from commons.operations_utils.functions import pred_diff
 
 
 class LinearRegression(DeltaModel):
@@ -32,5 +32,7 @@ class LinearRegression(DeltaModel):
     def predict(self, X, y_test=None):
         """Score test data"""
         values = X.dot(self.weights)
-        mse = mean_square_error(values, y_test) if y_test is not None else None
-        return Prediction(values=values, mse=mse)
+        diff = None
+        if y_test is not None:
+            diff = pred_diff(values, y_test)
+        return Prediction(values=values, diff=diff)
