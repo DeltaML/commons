@@ -3,11 +3,6 @@
 # Requirements
 ```pip install twine```
 
-# Run 
-
-``` ./scripts/upload_version.sh <VERSION>```
-
-
 # Manual Upload new version
 1 - update ``` <VERSION>```   in setup.py
 
