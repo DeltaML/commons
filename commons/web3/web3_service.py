@@ -39,7 +39,7 @@ class Web3Service:
         self.currency_service = CurrencyService(self.w3)
 
     @staticmethod
-    def _load_abi(abi_path=DEFAULT_ABI_PATH):
+    def _load_abi(abi_path):
         with open(abi_path) as f:
             info_json = json.load(f)
 
@@ -47,7 +47,7 @@ class Web3Service:
             raise InvalidAbiFormatException(abi_path)
         return info_json["abi"]
 
-    def build_contract(self, abi_path, address):
+    def build_contract(self, address, abi_path=DEFAULT_ABI_PATH):
         """
         Build contract from api definition and locate in address param
         :param abi_path:
