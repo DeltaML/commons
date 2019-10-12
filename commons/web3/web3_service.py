@@ -30,7 +30,7 @@ class CurrencyService:
 
 
 class Web3Service:
-    DEFAULT_ABI_PATH = 'resources/abi.json'
+    DEFAULT_ABI_PATH = 'abi.json'
 
     def __init__(self, url):
         self.http_provider = Web3.HTTPProvider(url)

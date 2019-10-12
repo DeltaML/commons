@@ -25,7 +25,7 @@ class W3ServiceIntegrationTest(unittest.TestCase):
         self.CONTRACT_ADDRESS = '0xb13931064070e3794079F36b667e2DAfDA40FfEC'
         self.model_id = "model_1"
 
-    def test_true(self):
+    def test_basic_flow_ok(self):
         w3_service = Web3Service(self.ETH_URL)
         all_accounts = w3_service.get_accounts()
         fa_address = all_accounts[0]
