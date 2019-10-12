@@ -58,6 +58,9 @@ class FederatedAggregatorContract(DeltaContract):
     def pay_for_orchestration(self, model_id):
         self._contract.functions.payForOrchestration(model_id).transact({'from': self.address})
 
+    def generate_training_payments(self, model_id):
+        self._contract.functions.generateTrainingPayments(model_id).transact({'from': self.address})
+
 
 class ModelBuyerContract(DeltaContract):
     """
