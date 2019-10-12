@@ -58,9 +58,6 @@ class FederatedAggregatorContract(DeltaContract):
     def pay_for_orchestration(self, model_id):
         self._contract.functions.payForOrchestration(model_id).transact({'from': self.address})
 
-    def generate_training_payments(self, model_id):
-        self._contract.functions.generateTrainingPayments(model_id).transact({'from': self.address})
-
 
 class ModelBuyerContract(DeltaContract):
     """
@@ -81,6 +78,9 @@ class ModelBuyerContract(DeltaContract):
 
     def check_partial_mse_for_iter(self, model_id, trainer, iter, mse):
         return self._contract.functions.checkPartialMseForIter(model_id, trainer, iter, mse).transact({'from': self.address})
+
+    def generate_training_payments(self, model_id):
+        self._contract.functions.generateTrainingPayments(model_id).transact({'from': self.address})
 
 
 class DataOwnerContract(DeltaContract):

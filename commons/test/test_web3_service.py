@@ -22,7 +22,7 @@ class W3ServiceIntegrationTest(unittest.TestCase):
 
     def setUp(self):
         self.ETH_URL = "http://127.0.0.1:7545"
-        self.CONTRACT_ADDRESS = '0xef73f4B298e536BB557b7CbA1FF691C711a57bD4'
+        self.CONTRACT_ADDRESS = '0xb13931064070e3794079F36b667e2DAfDA40FfEC'
         self.model_id = "model_1"
 
     def test_true(self):
@@ -48,5 +48,5 @@ class W3ServiceIntegrationTest(unittest.TestCase):
         mb_contract.pay_for_model(self.model_id, 10)
         fa_contract.save_mse(self.model_id, 10, 1)
         mb_contract.finish_model_training(self.model_id)
-        fa_contract.generate_training_payments(self.model_id)
+        mb_contract.generate_training_payments(self.model_id)
 
