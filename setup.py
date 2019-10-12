@@ -1,12 +1,19 @@
 import os
 from distutils.core import setup
 
-version = os.getenv('DELTA_ML_COMMON_VERSION', 'EMPTY_VERSION')
+
+
 setup(
     name='DeltaML-commons',  # How you named your package folder (MyLib)
     packages=['commons', 'commons.data', 'commons.decorators', 'commons.encryption', 'commons.model',
-              'commons.operations_utils', 'commons.utils', 'commons.model.exceptions', 'commons.web3'],  # Chose the same as "name"
-    version='0.10.11',  # Start with a small number and increase it with every change you make
+              'commons.operations_utils', 'commons.utils', 'commons.model.exceptions', 'commons.web3',
+              'commons.web3.resources'],  # Chose the same as "name"
+    package_dir={'commons.web3.resources': 'commons/web3/resources'},
+    package_data={'commons.web3.resources': ['commons/web3/resources/*.json']},
+
+    data_files=[('commons.web3.resources', ['commons/web3/resources/abi.json'])],
+    include_package_data=True,
+    version='0.10.17',  # Start with a small number and increase it with every change you make
     license='MIT',  # Chose a license from here: https://help.github.com/articles/licensing-a-repository
     description='Commons resources between DeltaML projects',  # Give a short description about your library
     author='DeltaML',  # Type in your name

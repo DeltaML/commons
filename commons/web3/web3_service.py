@@ -1,4 +1,6 @@
 import json
+import os
+
 from web3 import Web3
 
 from commons.web3.exceptions import InvalidAbiFormatException
@@ -30,7 +32,8 @@ class CurrencyService:
 
 
 class Web3Service:
-    DEFAULT_ABI_PATH = 'abi.json'
+    _HERE = os.path.dirname(os.path.abspath(__file__))
+    DEFAULT_ABI_PATH = os.path.join(_HERE, "resources/abi.json")
 
     def __init__(self, url):
         self.http_provider = Web3.HTTPProvider(url)
